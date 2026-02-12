@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>JS Ray Tracing</title>
+  <style>
+    html, body { margin:0; height:100%; background:#b8bed3; overflow:hidden; }
+    canvas { display:block; margin:0 auto; image-rendering: pixelated; }
+  </style>
+  <script type="module" src="./JS/main.js"></script>
+</head>
+<body>
+  <canvas id="Viewport" width="640" height="360"></canvas>
+
+  <label for="resolution-select">Select canvas resolution:</label>
+
+    <select name="Resolution" id="resolution-select">
+    <option value="1440p">2560x1440</option>   
+    <option value="1080p">1920x1080</option>
+    <option value="720p">1280x720</option>
+    <option value="360p">640x360</option>
+    <option value="144p">256x144</option>
+
+    <h2 id="resolution-display">Current Resolution: 640x360</h2>
+</select>
+</body>
+</html>
