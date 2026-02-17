@@ -28,9 +28,8 @@
 
     .panel {
       background: #2d2d3e;
-      border: 2px solid #444;
-      border-radius: 8px;
-      padding: 15px;
+      border: 1px solid #444;
+      padding: 10px;
       overflow-y: auto;
     }
 
@@ -41,6 +40,15 @@
 
     .viewport-panel {
       flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .viewport-wrapper {
+      width: 100%;
+      max-width: 100%;
+      aspect-ratio: 16 / 9;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -57,8 +65,8 @@
       background: #000;
       border: 2px solid #444;
       border-radius: 4px;
-      max-width: 100%;
-      max-height: 100%;
+      width: 100%;
+      height: 100%;
     }
 
     h3 {
@@ -196,7 +204,6 @@
       background: #666;
     }
   </style>
-  <script type="module" src="./JS/main.js"></script>
 </head>
 <body>
   <div class="container">
@@ -205,26 +212,26 @@
       <h3>Camera Settings</h3>
       
       <div class="control-group">
-        <label for="cam-pos-x">Position X:</label>
+        <label for="cam-elev">Elevation (Y):</label>
         <div class="range-row">
-          <input type="range" id="cam-pos-x" min="-10" max="10" value="0" step="0.1">
-          <input type="number" id="cam-pos-x-num" value="0" step="0.1">
+          <input type="range" id="cam-elev" min="-90" max="90" value="5" step="0.1">
+          <input type="number" id="cam-elev-num" value="5" step="0.1">
         </div>
       </div>
 
       <div class="control-group">
-        <label for="cam-pos-y">Position Y:</label>
+        <label for="cam-azim">Azimuth (Z):</label>
         <div class="range-row">
-          <input type="range" id="cam-pos-y" min="-10" max="10" value="2" step="0.1">
-          <input type="number" id="cam-pos-y-num" value="2" step="0.1">
+          <input type="range" id="cam-azim" min="0" max="360" value="90" step="0.1">
+          <input type="number" id="cam-azim-num" value="90" step="0.1">
         </div>
       </div>
 
       <div class="control-group">
-        <label for="cam-pos-z">Position Z:</label>
+        <label for="cam-dist">Distance (Radius):</label>
         <div class="range-row">
-          <input type="range" id="cam-pos-z" min="-20" max="20" value="8" step="0.1">
-          <input type="number" id="cam-pos-z-num" value="8" step="0.1">
+          <input type="range" id="cam-dist" min="1" max="50" value="2.5" step="0.1">
+          <input type="number" id="cam-dist-num" value="2.5" step="0.1">
         </div>
       </div>
 
@@ -250,12 +257,30 @@
         </select>
       </div>
 
+      <div class="control-group">
+        <label for="samples-per-frame">Samples per Frame (rays/pixel):</label>
+        <div class="range-row">
+          <input type="range" id="samples-per-frame" min="1" max="8" value="1" step="1">
+          <input type="number" id="samples-per-frame-num" value="1" min="1" max="8" step="1">
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label for="max-bounces">Max Bounces:</label>
+        <div class="range-row">
+          <input type="range" id="max-bounces" min="1" max="6" value="2" step="1">
+          <input type="number" id="max-bounces-num" value="2" min="1" max="6" step="1">
+        </div>
+      </div>
+
       <button id="reset-camera">Reset Camera</button>
     </div>
 
     <!-- Center Viewport -->
     <div class="panel viewport-panel">
-      <canvas id="Viewport" width="640" height="360"></canvas>
+      <div class="viewport-wrapper">
+        <canvas id="Viewport" width="640" height="360"></canvas>
+      </div>
     </div>
 
     <!-- Right Debug Panel -->
@@ -268,8 +293,8 @@
       </div>
 
       <div class="debug-item">
-        <div class="debug-label">Camera Position:</div>
-        <div class="debug-value" id="debug-cam-pos">X: 0.0, Y: 2.0, Z: 8.0</div>
+        <div class="debug-label">Camera (Elev/Azim):</div>
+        <div class="debug-value" id="debug-cam-pos">Elev: 20.00°, Azim: 0.00°</div>
       </div>
 
       <div class="debug-item">
@@ -296,5 +321,6 @@
       </div>
     </div>
   </div>
-</body>
-</html>
+    <script type="module" src="./JS/main.js"></script>
+  </body>
+  </html>
