@@ -1,3 +1,5 @@
+// !!! NO LONGER IN USE, IT STAYS HERE JUST FOR MATH REFERENCE (BECAUSE I DONT REMEMBER ALL FORMULAS FOR VECTOR MATH) !!!
+
 export function Vector(x, y, z) {
     this.x = x || 0;
     this.y = y || 0;
